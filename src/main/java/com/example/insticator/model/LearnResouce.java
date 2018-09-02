@@ -1,13 +1,15 @@
 package com.example.insticator.model;
 
-public class LearnResouce {
-    String a;
-    String b;
-    String c;
+import javax.persistence.Entity;
 
-    public LearnResouce(String a, String b, String c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+public class LearnResouce {
+    String author;
+    String title;
+    String url;
+
+    public LearnResouce(String author, String title, String url) {
+        this.author = author;
+        this.title = title;
+        this.url = url;
     }
 }

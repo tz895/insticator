@@ -1,12 +1,20 @@
 package com.example.insticator.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
+//@Entity
+//@Table(name = "objective")
 public class Objective implements Serializable {
 
     private static final long serialVersionUID = 7679561687087109451L;
 
+//    @Id
+//    @Column(name = "oid")
     private int oId;
     private String content;
 
