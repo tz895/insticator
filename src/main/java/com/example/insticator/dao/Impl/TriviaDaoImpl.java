@@ -48,4 +48,11 @@ public class TriviaDaoImpl implements TriviaDao {
     public void delete(int id) {
         entityManager.remove(getById(id));
     }
+
+    @Override
+    public Trivia getRandom(int uid) {
+        String hql = "FROM Trival AS t WHERE t.tId not in (SELECT tid FROM Trival JOIN User)";
+
+        return (Trivia)entityManager.createQuery(hql).getSingleResult();
+    }
 }

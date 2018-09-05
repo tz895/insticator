@@ -5,10 +5,7 @@ import com.example.insticator.service.TriviaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +21,18 @@ public class TriviaController {
         this.triviaService = triviaService;
     }
 
+    @GetMapping("/random/{uId}")
+    public ModelAndView getRandom(@PathVariable(value = "uId")int uid) {
+        Trivia trivia = triviaService.getById(uid);
+        ModelAndView modelAndView = new ModelAndView("/trivia");
+        modelAndView.addObject("trivia",trivia);
+
+        return modelAndView;
+    }
+
+
     @RequestMapping("/create")
-    public ModelAndView addProduct() {
+    public ModelAndView addTrivia() {
         Trivia trivia = new Trivia();
 
         ModelAndView modelAndView = new ModelAndView("/createTrivia");

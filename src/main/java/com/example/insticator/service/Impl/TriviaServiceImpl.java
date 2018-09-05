@@ -41,4 +41,9 @@ public class TriviaServiceImpl implements TriviaService {
 
         triviaDao.delete(id);
     }
+
+    @Override
+    public Trivia getRandom(int uid) {
+        return triviaDao.getRandom(uid);
+    }
 }

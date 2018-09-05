@@ -2,6 +2,7 @@ package com.example.insticator.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,6 +33,9 @@ public class Trivia implements Serializable {
 
     @Column(name = "correct")
     private Integer correct;
+
+    @ManyToMany(mappedBy = "trivias")
+    private List<User> users = new ArrayList<>();
 
     public Trivia(String content, String answersA, String answersB, String answersC, String answersD, Integer correct) {
         this.content = content;
