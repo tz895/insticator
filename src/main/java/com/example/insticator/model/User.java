@@ -15,6 +15,7 @@ public class User {
     @Column(name="username")
     private String username;
 
+
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
@@ -24,6 +25,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "tid")
     )
     private List<Trivia> trivias = new ArrayList<>();
+
+    public User(String username, List<Trivia> trivias) {
+        this.username = username;
+        this.trivias = new ArrayList<>();
+    }
+
+    public User() {
+    }
 
     public int getuId() {
         return uId;

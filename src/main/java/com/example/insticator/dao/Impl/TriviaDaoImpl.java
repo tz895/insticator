@@ -2,6 +2,7 @@ package com.example.insticator.dao.Impl;
 
 import com.example.insticator.dao.TriviaDao;
 import com.example.insticator.model.Trivia;
+import com.example.insticator.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -63,7 +64,23 @@ public class TriviaDaoImpl implements TriviaDao {
 
         List<Trivia> lists = query.getResultList();
 
+        if(lists.size() == 0) {
+            return new Trivia();
+        }
         return lists.get((int)(Math.random() * lists.size()));
 //        return (Trivia)entityManager.createQuery(hql).getSingleResult();
+    }
+
+    @Override
+    public void build(int tid, int uid) {
+        Trivia trivia = getById(tid);
+
+        User user = entityManager.find(User.class,uid);
+
+        List<Trivia> triviaList = user.getTrivias();
+        triviaList.add(trivia);
+        List<User> userList = trivia.getUsers();
+        userList.add(user);
+
     }
 }

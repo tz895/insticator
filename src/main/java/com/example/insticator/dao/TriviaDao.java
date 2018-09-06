@@ -11,4 +11,5 @@ public interface TriviaDao {
     void add(Trivia trivia);
     void update(Trivia trivia);
     void delete(int id);
+    void build(int tid,int uid);
 }

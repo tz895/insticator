@@ -38,11 +38,6 @@ public class TriviaController {
 
     @GetMapping("/next/{uId}/{tId}")
     public String getNext(@PathVariable(value = "uId")int uid, @PathVariable(value = "tId")int tid) {
-//        User cur = userService.getById(uid);
-////        cur.getTrivias().add(trivia);
-//        int tid = trivia.gettId();
-        int tmp1 = tid;
-        int tmp2 = uid;
         triviaService.build(tid,uid);
         return "redirect:/trivia/random/"+ uid;
     }

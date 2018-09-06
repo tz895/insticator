@@ -56,10 +56,7 @@ public class TriviaServiceImpl implements TriviaService {
 
     @Override
     public void build(int tid, int uid) {
-        User user = userDao.getById(uid);
-        String s = " ";
-        Trivia trivia = triviaDao.getById(tid);
-        user.getTrivias().add(trivia);
-        trivia.getUsers().add(user);
+
+        triviaDao.build(tid,uid);
     }
 }

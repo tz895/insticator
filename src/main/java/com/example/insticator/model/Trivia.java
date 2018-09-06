@@ -44,6 +44,7 @@ public class Trivia implements Serializable {
         this.answersC = answersC;
         this.answersD = answersD;
         this.correct = correct;
+        this.users = new ArrayList<>();
     }
 
     public Trivia() {
