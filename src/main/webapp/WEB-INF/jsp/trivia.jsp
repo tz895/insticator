@@ -30,13 +30,13 @@
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Create new Trivia</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <h2>${trivia.content}</h2>
+        <%--<p class="lead"></p>--%>
     </div>
 
-    <form:form action = "${pageContext.request.contextPath}/trivia/create" method = "post" modelAttribute="trivia" >
+    <form:form action = "${pageContext.request.contextPath}/trivia/next/${uId}/${tId}" method = "get">
 
-        <h3>${trivia.content}</h3>
+        <h3></h3>
 
 
 

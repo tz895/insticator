@@ -1,7 +1,9 @@
 package com.example.insticator.controller;
 
 import com.example.insticator.model.Trivia;
+import com.example.insticator.model.User;
 import com.example.insticator.service.TriviaService;
+import com.example.insticator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,22 +18,36 @@ import javax.validation.Valid;
 public class TriviaController {
 
     private TriviaService triviaService;
+    private UserService userService;
 
-    public TriviaController(TriviaService triviaService) {
+    public TriviaController(TriviaService triviaService, UserService userService) {
         this.triviaService = triviaService;
+        this.userService = userService;
     }
 
     @GetMapping("/random/{uId}")
     public ModelAndView getRandom(@PathVariable(value = "uId")int uid) {
-        Trivia trivia = triviaService.getById(uid);
+        Trivia trivia = triviaService.getRandom(uid);
         ModelAndView modelAndView = new ModelAndView("/trivia");
         modelAndView.addObject("trivia",trivia);
+        modelAndView.addObject("uId",uid);
+        modelAndView.addObject("tId",trivia.gettId());
 
         return modelAndView;
     }
 
+    @GetMapping("/next/{uId}/{tId}")
+    public String getNext(@PathVariable(value = "uId")int uid, @PathVariable(value = "tId")int tid) {
+//        User cur = userService.getById(uid);
+////        cur.getTrivias().add(trivia);
+//        int tid = trivia.gettId();
+        int tmp1 = tid;
+        int tmp2 = uid;
+        triviaService.build(tid,uid);
+        return "redirect:/trivia/random/"+ uid;
+    }
 
-    @RequestMapping("/create")
+    @GetMapping("/create")
     public ModelAndView addTrivia() {
         Trivia trivia = new Trivia();
 
@@ -41,7 +57,7 @@ public class TriviaController {
         return modelAndView;
 
     }
-    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    @PostMapping("/create")
     public String addTrivia(@Valid@ModelAttribute("Trivia")Trivia trivia, BindingResult result, HttpServletRequest request) {
         if(result.hasErrors()) {
             return "Fail";
@@ -49,7 +65,7 @@ public class TriviaController {
 
         triviaService.add(trivia);
 
-        return "home";
+        return "Blank";
     }
 
 

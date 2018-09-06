@@ -104,4 +104,12 @@ public class Trivia implements Serializable {
     public void setCorrect(Integer correct) {
         this.correct = correct;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }

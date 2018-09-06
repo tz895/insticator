@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -51,8 +52,18 @@ public class TriviaDaoImpl implements TriviaDao {
 
     @Override
     public Trivia getRandom(int uid) {
-        String hql = "FROM Trival AS t WHERE t.tId not in (SELECT tid FROM Trival JOIN User)";
+//        String hql = "FROM Trivia AS t WHERE t.tId  not in (SELECT tId FROM answered_trivial)";
+//        String hql = "FROM Trivia as t ORDER BY t.tId";
 
-        return (Trivia)entityManager.createQuery(hql).getSingleResult();
+        String hql = "FROM Trivia as t WHERE t.tId NOT IN (SELECT s.tId FROM Trivia s JOIN s.users as u WHERE u.uId = :id)";
+
+        Query query =  entityManager.createQuery(hql);
+
+        query.setParameter("id",uid);
+
+        List<Trivia> lists = query.getResultList();
+
+        return lists.get((int)(Math.random() * lists.size()));
+//        return (Trivia)entityManager.createQuery(hql).getSingleResult();
     }
 }

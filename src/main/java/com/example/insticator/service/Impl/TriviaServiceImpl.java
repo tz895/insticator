@@ -1,7 +1,9 @@
 package com.example.insticator.service.Impl;
 
 import com.example.insticator.dao.TriviaDao;
+import com.example.insticator.dao.UserDao;
 import com.example.insticator.model.Trivia;
+import com.example.insticator.model.User;
 import com.example.insticator.service.TriviaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,13 @@ import java.util.List;
 @Service
 public class TriviaServiceImpl implements TriviaService {
 
-    @Autowired
     private TriviaDao triviaDao;
+    private UserDao userDao;
+
+    public TriviaServiceImpl(TriviaDao triviaDao, UserDao userDao) {
+        this.triviaDao = triviaDao;
+        this.userDao = userDao;
+    }
 
     @Override
     public List<Trivia> getAllTrivia() {
@@ -45,5 +52,14 @@ public class TriviaServiceImpl implements TriviaService {
     @Override
     public Trivia getRandom(int uid) {
         return triviaDao.getRandom(uid);
+    }
+
+    @Override
+    public void build(int tid, int uid) {
+        User user = userDao.getById(uid);
+        String s = " ";
+        Trivia trivia = triviaDao.getById(tid);
+        user.getTrivias().add(trivia);
+        trivia.getUsers().add(user);
     }
 }
