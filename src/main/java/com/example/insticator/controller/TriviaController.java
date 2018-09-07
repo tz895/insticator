@@ -1,5 +1,6 @@
 package com.example.insticator.controller;
 
+import com.example.insticator.model.TAnswer;
 import com.example.insticator.model.Trivia;
 import com.example.insticator.model.User;
 import com.example.insticator.service.TriviaService;
@@ -28,17 +29,24 @@ public class TriviaController {
     @GetMapping("/random/{uId}")
     public ModelAndView getRandom(@PathVariable(value = "uId")int uid) {
         Trivia trivia = triviaService.getRandom(uid);
+        if(trivia == null) {
+            ModelAndView modelAndView = new ModelAndView("/finish");
+            return modelAndView;
+        }
+        Integer answer = null;
         ModelAndView modelAndView = new ModelAndView("/trivia");
+        TAnswer tAnswer = new TAnswer();
         modelAndView.addObject("trivia",trivia);
+        modelAndView.addObject("answer",tAnswer);
         modelAndView.addObject("uId",uid);
         modelAndView.addObject("tId",trivia.gettId());
 
         return modelAndView;
     }
 
-    @GetMapping("/next/{uId}/{tId}")
-    public String getNext(@PathVariable(value = "uId")int uid, @PathVariable(value = "tId")int tid) {
-        triviaService.build(tid,uid);
+    @PostMapping("/next/{uId}/{tId}")
+    public String getNext(@PathVariable(value = "uId")int uid, @PathVariable(value = "tId")int tid, @Valid@ModelAttribute("answer")TAnswer tAnswer) {
+        triviaService.build(tid,uid,tAnswer.getAnswer());
         return "redirect:/trivia/random/"+ uid;
     }
 

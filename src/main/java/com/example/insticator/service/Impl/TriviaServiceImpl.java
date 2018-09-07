@@ -1,7 +1,10 @@
 package com.example.insticator.service.Impl;
 
+import com.example.insticator.dao.AnswerDao;
 import com.example.insticator.dao.TriviaDao;
 import com.example.insticator.dao.UserDao;
+import com.example.insticator.model.TAnswer;
+import com.example.insticator.model.TAnswerId;
 import com.example.insticator.model.Trivia;
 import com.example.insticator.model.User;
 import com.example.insticator.service.TriviaService;
@@ -15,10 +18,12 @@ public class TriviaServiceImpl implements TriviaService {
 
     private TriviaDao triviaDao;
     private UserDao userDao;
+    private AnswerDao answerDao;
 
-    public TriviaServiceImpl(TriviaDao triviaDao, UserDao userDao) {
+    public TriviaServiceImpl(TriviaDao triviaDao, UserDao userDao, AnswerDao answerDao) {
         this.triviaDao = triviaDao;
         this.userDao = userDao;
+        this.answerDao = answerDao;
     }
 
     @Override
@@ -55,8 +60,10 @@ public class TriviaServiceImpl implements TriviaService {
     }
 
     @Override
-    public void build(int tid, int uid) {
+    public void build(int tid, int uid,int answer) {
 
-        triviaDao.build(tid,uid);
+        TAnswerId tAnswerId = new TAnswerId(triviaDao.getById(tid),userDao.getById(uid));
+        TAnswer tAnswer = new TAnswer(tAnswerId,answer);
+        answerDao.TriviaBuild(tAnswer);
     }
 }

@@ -56,7 +56,9 @@ public class TriviaDaoImpl implements TriviaDao {
 //        String hql = "FROM Trivia AS t WHERE t.tId  not in (SELECT tId FROM answered_trivial)";
 //        String hql = "FROM Trivia as t ORDER BY t.tId";
 
-        String hql = "FROM Trivia as t WHERE t.tId NOT IN (SELECT s.tId FROM Trivia s JOIN s.users as u WHERE u.uId = :id)";
+//        String hql = "FROM Trivia as t WHERE t.tId NOT IN (SELECT s.tId FROM Trivia s JOIN s.users as u WHERE u.uId = :id)";
+
+        String hql = "FROM Trivia as t WHERE t.tId NOT IN (SELECT s.tAnswerId.trivia.tId FROM TAnswer as s WHERE s.tAnswerId.user.uId = :id)";
 
         Query query =  entityManager.createQuery(hql);
 
@@ -65,7 +67,7 @@ public class TriviaDaoImpl implements TriviaDao {
         List<Trivia> lists = query.getResultList();
 
         if(lists.size() == 0) {
-            return new Trivia();
+            return null;
         }
         return lists.get((int)(Math.random() * lists.size()));
 //        return (Trivia)entityManager.createQuery(hql).getSingleResult();
@@ -73,14 +75,14 @@ public class TriviaDaoImpl implements TriviaDao {
 
     @Override
     public void build(int tid, int uid) {
-        Trivia trivia = getById(tid);
-
-        User user = entityManager.find(User.class,uid);
-
-        List<Trivia> triviaList = user.getTrivias();
-        triviaList.add(trivia);
-        List<User> userList = trivia.getUsers();
-        userList.add(user);
+//        Trivia trivia = getById(tid);
+//
+//        User user = entityManager.find(User.class,uid);
+//
+//        List<Trivia> triviaList = user.getTrivias();
+//        triviaList.add(trivia);
+//        List<User> userList = trivia.getUsers();
+//        userList.add(user);
 
     }
 }

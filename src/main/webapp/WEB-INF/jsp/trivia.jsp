@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: tianyouzhou
@@ -34,42 +35,53 @@
         <%--<p class="lead"></p>--%>
     </div>
 
-    <form:form action = "${pageContext.request.contextPath}/trivia/next/${uId}/${tId}" method = "get">
+    <form:form action = "${pageContext.request.contextPath}/trivia/next/${uId}/${tId}" method = "post" modelAttribute="answer">
 
         <h3></h3>
 
 
-
+        <c:if test="${trivia.answersA != null && trivia.answersA.length() != 0}">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <%--<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>--%>
+            <input:radiobutton path="answer" id="exampleRadios1" value="1" checked="1" />
             <label class="form-check-label" for="exampleRadios1">
                     ${trivia.answersA}
             </label>
         </div>
+        </c:if>
+
+        <c:if test="${trivia.answersB != null && trivia.answersB.length() != 0}">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <input:radiobutton path="answer" id="exampleRadios2" value="2" />
             <label class="form-check-label" for="exampleRadios2">
                     ${trivia.answersB}
             </label>
         </div>
+        </c:if>
+
+        <c:if test="${trivia.answersC != null && trivia.answersC.length() != 0}">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+            <input:radiobutton path="answer" id="exampleRadios3" value="3"/>
             <label class="form-check-label" for="exampleRadios3">
                     ${trivia.answersC}
             </label>
         </div>
+        </c:if>
+
+        <c:if test="${trivia.answersD != null && trivia.answersD.length() != 0}">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-            <label class="form-check-label" for="exampleRadios3">
+            <input:radiobutton path="answer" id="exampleRadios4" value="4" />
+            <label class="form-check-label" for="exampleRadios4">
                     ${trivia.answersD}
             </label>
         </div>
+        </c:if>
 
 
         <br>
 
         <input type="submit" value="submit" class="btn btn-primary">
-        <a href="<c:url value="/"/>" class="btn btn-light"> Cancel</a>
+        <a href="<c:url value="${pageContext.request.contextPath}/index"/>" class="btn btn-light">Home</a>
 
     </form:form>
 

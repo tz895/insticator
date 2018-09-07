@@ -16,19 +16,15 @@ public class User {
     private String username;
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "answered_trivial",
-            joinColumns = @JoinColumn(name = "uid"),
-            inverseJoinColumns = @JoinColumn(name = "tid")
+    @OneToMany(
+            mappedBy = "tAnswerId.user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
     )
-    private List<Trivia> trivias = new ArrayList<>();
+    private List<TAnswer> tAnswers = new ArrayList<>();
 
-    public User(String username, List<Trivia> trivias) {
+    public User(String username) {
         this.username = username;
-        this.trivias = new ArrayList<>();
     }
 
     public User() {
@@ -50,11 +46,11 @@ public class User {
         this.username = username;
     }
 
-    public List<Trivia> getTrivias() {
-        return trivias;
+    public List<TAnswer> gettAnswers() {
+        return tAnswers;
     }
 
-    public void setTrivias(List<Trivia> trivias) {
-        this.trivias = trivias;
+    public void settAnswers(List<TAnswer> tAnswers) {
+        this.tAnswers = tAnswers;
     }
 }

@@ -34,8 +34,12 @@ public class Trivia implements Serializable {
     @Column(name = "correct")
     private Integer correct;
 
-    @ManyToMany(mappedBy = "trivias")
-    private List<User> users = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "tAnswerId.trivia",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<TAnswer> tAnswers = new ArrayList<>();
 
     public Trivia(String content, String answersA, String answersB, String answersC, String answersD, Integer correct) {
         this.content = content;
@@ -44,7 +48,6 @@ public class Trivia implements Serializable {
         this.answersC = answersC;
         this.answersD = answersD;
         this.correct = correct;
-        this.users = new ArrayList<>();
     }
 
     public Trivia() {
@@ -106,11 +109,11 @@ public class Trivia implements Serializable {
         this.correct = correct;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<TAnswer> gettAnswers() {
+        return tAnswers;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void settAnswers(List<TAnswer> tAnswers) {
+        this.tAnswers = tAnswers;
     }
 }
