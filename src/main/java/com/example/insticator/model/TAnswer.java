@@ -1,5 +1,7 @@
 package com.example.insticator.model;
 
+import com.example.insticator.model.wrappedId.TAnswerId;
+
 import javax.persistence.*;
 
 @Entity

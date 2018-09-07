@@ -4,11 +4,9 @@ import com.example.insticator.dao.AnswerDao;
 import com.example.insticator.dao.TriviaDao;
 import com.example.insticator.dao.UserDao;
 import com.example.insticator.model.TAnswer;
-import com.example.insticator.model.TAnswerId;
+import com.example.insticator.model.wrappedId.TAnswerId;
 import com.example.insticator.model.Trivia;
-import com.example.insticator.model.User;
 import com.example.insticator.service.TriviaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

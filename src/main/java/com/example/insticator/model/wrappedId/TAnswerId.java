@@ -1,4 +1,7 @@
-package com.example.insticator.model;
+package com.example.insticator.model.wrappedId;
+
+import com.example.insticator.model.Trivia;
+import com.example.insticator.model.User;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;

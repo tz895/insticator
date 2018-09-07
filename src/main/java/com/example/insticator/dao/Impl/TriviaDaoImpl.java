@@ -70,19 +70,6 @@ public class TriviaDaoImpl implements TriviaDao {
             return null;
         }
         return lists.get((int)(Math.random() * lists.size()));
-//        return (Trivia)entityManager.createQuery(hql).getSingleResult();
     }
 
-    @Override
-    public void build(int tid, int uid) {
-//        Trivia trivia = getById(tid);
-//
-//        User user = entityManager.find(User.class,uid);
-//
-//        List<Trivia> triviaList = user.getTrivias();
-//        triviaList.add(trivia);
-//        List<User> userList = trivia.getUsers();
-//        userList.add(user);
-
-    }
 }

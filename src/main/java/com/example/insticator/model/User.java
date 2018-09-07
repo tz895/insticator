@@ -23,6 +23,20 @@ public class User {
     )
     private List<TAnswer> tAnswers = new ArrayList<>();
 
+    @OneToMany(
+            mappedBy = "pAnswerId.user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<PAnswer> pAnswers = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "cAnswerId.user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<CAnswer> cAnswers = new ArrayList<>();
+
     public User(String username) {
         this.username = username;
     }
@@ -52,5 +66,21 @@ public class User {
 
     public void settAnswers(List<TAnswer> tAnswers) {
         this.tAnswers = tAnswers;
+    }
+
+    public List<PAnswer> getpAnswers() {
+        return pAnswers;
+    }
+
+    public void setpAnswers(List<PAnswer> pAnswers) {
+        this.pAnswers = pAnswers;
+    }
+
+    public List<CAnswer> getcAnswers() {
+        return cAnswers;
+    }
+
+    public void setcAnswers(List<CAnswer> cAnswers) {
+        this.cAnswers = cAnswers;
     }
 }
