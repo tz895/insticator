@@ -176,4 +176,39 @@ public class Checkbox implements Serializable {
     public void setcAnswers(List<CAnswer> cAnswers) {
         this.cAnswers = cAnswers;
     }
+
+    public List<String> getValidAnswer() {
+        List<String> list = new ArrayList<>();
+        if(this.option1 != null && this.option1.length() != 0) {
+            list.add(this.option1);
+        }
+        if(this.option2 != null && this.option2.length() != 0) {
+            list.add(this.option2);
+        }
+        if(this.option3 != null && this.option3.length() != 0) {
+            list.add(this.option3);
+        }
+        if(this.option4 != null && this.option4.length() != 0) {
+            list.add(this.option4);
+        }
+        if(this.option5 != null && this.option5.length() != 0) {
+            list.add(this.option5);
+        }
+        if(this.option6 != null && this.option6.length() != 0) {
+            list.add(this.option6);
+        }
+        if(this.option7 != null && this.option7.length() != 0) {
+            list.add(this.option7);
+        }
+        if(this.option8 != null && this.option8.length() != 0) {
+            list.add(this.option8);
+        }
+        if(this.option9 != null && this.option9.length() != 0) {
+            list.add(this.option9);
+        }
+        if(this.option10 != null && this.option10.length() != 0) {
+            list.add(this.option10);
+        }
+        return list;
+    }
 }

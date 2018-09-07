@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: tianyouzhou
@@ -31,50 +32,28 @@
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>${poll.content}</h2>
+        <h2>${checkbox.content}</h2>
         <%--<p class="lead"></p>--%>
     </div>
 
-    <form:form action = "${pageContext.request.contextPath}/main/next/poll/${uId}/${pId}" method = "post" modelAttribute="answer">
+    <form:form action = "${pageContext.request.contextPath}/main/next/checkbox/${uId}/${cId}" method = "post" modelAttribute="answerArray">
 
         <h3></h3>
 
+        <div class="form-check">
+            <form:checkboxes items = "${answerArray.answers}" path = "answers" />
+        </div>
 
-        <c:if test="${poll.answersA != null && poll.answersA.length() != 0}">
-            <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios1" value="${poll.answersA}" checked="${poll.answersA}" />
-                <label class="form-check-label" for="exampleRadios1">
-                        ${poll.answersA}
-                </label>
-            </div>
-        </c:if>
 
-        <c:if test="${poll.answersB != null && poll.answersB.length() != 0}">
-            <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios2" value="${poll.answersB}" />
-                <label class="form-check-label" for="exampleRadios2">
-                        ${poll.answersB}
-                </label>
-            </div>
-        </c:if>
+        <%--<c:if test="${checkbox.option2 != null && checkbox.option2.length() != 0}">--%>
+            <%--<div class="form-check">--%>
+                <%--<from:checkbox path="${answerArray[1]}" id="checkbox2" value="${checkbox.option2}" />--%>
+                <%--<label class="form-check-label" for="checkbox2">--%>
+                        <%--${checkbox.option2}--%>
+                <%--</label>--%>
+            <%--</div>--%>
+        <%--</c:if>--%>
 
-        <c:if test="${poll.answersC != null && poll.answersC.length() != 0}">
-            <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios3" value="${poll.answersC}"/>
-                <label class="form-check-label" for="exampleRadios3">
-                        ${poll.answersC}
-                </label>
-            </div>
-        </c:if>
-
-        <c:if test="${poll.answersD != null && poll.answersD.length() != 0}">
-            <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios4" value="${poll.answersD}" />
-                <label class="form-check-label" for="exampleRadios4">
-                        ${poll.answersD}
-                </label>
-            </div>
-        </c:if>
 
 
         <br>

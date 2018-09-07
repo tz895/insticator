@@ -13,7 +13,7 @@
     <title>Blank</title>
 </head>
 <body>
-Created Successfully!
+Successfully!
 <p>
     <a href="<c:url value="${pageContext.request.contextPath}/admin"/>" class="btn btn-light">Home</a>
 </p>

@@ -91,6 +91,33 @@
         </table>
 
 
+        <div class = "page-information">
+            <h5>Checkbox <a href="<spring:url value="/checkbox/create" />" class="btn btn-primary btn-sm">Add Checkbox</a></h5>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr class="table-success">
+                <th>Content</th>
+                <th></th>
+            </tr>
+            </thead>
+            <c:forEach items = "${checkbox}" var="box">
+                <tr>
+                    <td>${box.content}</td>
+                    <td>
+
+                        <a href="<spring:url value = "/checkbox/delete/${box.cId}"/>"><i class="fas fa-trash"></i></a>
+
+                        <a href="<spring:url value = "/checkbox/edit/${box.cId}"/>"><i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+            </c:forEach>
+
+
+        </table>
+
+
 
     </div>
 
