@@ -26,29 +26,6 @@ public class TriviaController {
         this.userService = userService;
     }
 
-    @GetMapping("/random/{uId}")
-    public ModelAndView getRandom(@PathVariable(value = "uId")int uid) {
-        Trivia trivia = triviaService.getRandom(uid);
-        if(trivia == null) {
-            ModelAndView modelAndView = new ModelAndView("/finish");
-            return modelAndView;
-        }
-        Integer answer = null;
-        ModelAndView modelAndView = new ModelAndView("/trivia");
-        TAnswer tAnswer = new TAnswer();
-        modelAndView.addObject("trivia",trivia);
-        modelAndView.addObject("answer",tAnswer);
-        modelAndView.addObject("uId",uid);
-        modelAndView.addObject("tId",trivia.gettId());
-
-        return modelAndView;
-    }
-
-    @PostMapping("/next/{uId}/{tId}")
-    public String getNext(@PathVariable(value = "uId")int uid, @PathVariable(value = "tId")int tid, @Valid@ModelAttribute("answer")TAnswer tAnswer) {
-        triviaService.build(tid,uid,tAnswer.getAnswer());
-        return "redirect:/trivia/random/"+ uid;
-    }
 
     @GetMapping("/create")
     public ModelAndView addTrivia() {
@@ -58,7 +35,6 @@ public class TriviaController {
         modelAndView.addObject("trivia",trivia);
 
         return modelAndView;
-
     }
     @PostMapping("/create")
     public String addTrivia(@Valid@ModelAttribute("Trivia")Trivia trivia, BindingResult result, HttpServletRequest request) {
@@ -67,6 +43,34 @@ public class TriviaController {
         }
 
         triviaService.add(trivia);
+
+        return "Blank";
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editTrivia(@PathVariable("id") int id) {
+        Trivia trivia = triviaService.getById(id);
+
+        ModelAndView modelAndView = new ModelAndView("/editTrivia");
+        modelAndView.addObject("trivia",trivia);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/edit")
+    public String editTrivia(@Valid@ModelAttribute("Trivia")Trivia trivia, BindingResult result, HttpServletRequest request) {
+        if(result.hasErrors()) {
+            return "Fail";
+        }
+
+        triviaService.update(trivia);
+
+        return "Blank";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTrivia(@PathVariable("id")int id) {
+        triviaService.delete(id);
 
         return "Blank";
     }

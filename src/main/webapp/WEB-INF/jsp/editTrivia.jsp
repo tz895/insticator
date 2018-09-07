@@ -31,41 +31,42 @@
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1>Create new Trivia</h1>
+        <h1>Edit Trivia</h1>
         <%--<p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>--%>
     </div>
 
-    <form:form action = "${pageContext.request.contextPath}/trivia/create" method = "post" modelAttribute="trivia" >
+    <form:form action = "${pageContext.request.contextPath}/trivia/edit" method = "post" modelAttribute="trivia" >
 
         <h3>Trivia</h3>
+        <form:hidden path="tId" value="${trivia.tId}"/>
 
         <div class="form-group">
             <label for="content">Content</label>
-            <form:input path="content" id = "content" class="form-control" />
+            <form:input path="content" id = "content" class="form-control" value="${trivia.content}"/>
         </div>
 
         <div class="form-group">
             <label for="answersA">Answer A</label>
-            <form:input path="answersA" id = "answersA" class="form-control"/>
+            <form:input path="answersA" id = "answersA" class="form-control" value="${trivia.answersA}"/>
         </div>
 
         <div class="form-group">
             <label for="answersB">Answer B</label>
-            <form:input path="answersB" id = "answersB" class="form-control"/>
+            <form:input path="answersB" id = "answersB" class="form-control" value="${trivia.answersB}"/>
         </div>
 
         <div class="form-group">
             <label for="answersC">Answer C</label>
-            <form:input path="answersC" id = "answersC" class="form-control"/>
+            <form:input path="answersC" id = "answersC" class="form-control" value="${trivia.answersC}"/>
         </div>
 
         <div class="form-group">
             <label for="answersD">Answer D</label>
-            <form:input path="answersD" id = "answersD" class="form-control"/>
+            <form:input path="answersD" id = "answersD" class="form-control" value="${trivia.answersD}"/>
         </div>
         <div class="form-group">
             <label for="correct">Correct Answer</label>
-            <form:input type="number" path="correct" id = "correct" class="form-control" />
+            <form:input type="number" path="correct" id = "correct" class="form-control" value="${trivia.correct}"/>
         </div>
 
 
@@ -95,26 +96,26 @@
 <%--<script src="../../dist/js/bootstrap.min.js"></script>--%>
 <%--<script src="../../assets/js/vendor/holder.min.js"></script>--%>
 <%--<script>--%>
-    <%--// Example starter JavaScript for disabling form submissions if there are invalid fields--%>
-    <%--(function() {--%>
-        <%--'use strict';--%>
+<%--// Example starter JavaScript for disabling form submissions if there are invalid fields--%>
+<%--(function() {--%>
+<%--'use strict';--%>
 
-        <%--window.addEventListener('load', function() {--%>
-            <%--// Fetch all the forms we want to apply custom Bootstrap validation styles to--%>
-            <%--var forms = document.getElementsByClassName('needs-validation');--%>
+<%--window.addEventListener('load', function() {--%>
+<%--// Fetch all the forms we want to apply custom Bootstrap validation styles to--%>
+<%--var forms = document.getElementsByClassName('needs-validation');--%>
 
-            <%--// Loop over them and prevent submission--%>
-            <%--var validation = Array.prototype.filter.call(forms, function(form) {--%>
-                <%--form.addEventListener('submit', function(event) {--%>
-                    <%--if (form.checkValidity() === false) {--%>
-                        <%--event.preventDefault();--%>
-                        <%--event.stopPropagation();--%>
-                    <%--}--%>
-                    <%--form.classList.add('was-validated');--%>
-                <%--}, false);--%>
-            <%--});--%>
-        <%--}, false);--%>
-    <%--})();--%>
+<%--// Loop over them and prevent submission--%>
+<%--var validation = Array.prototype.filter.call(forms, function(form) {--%>
+<%--form.addEventListener('submit', function(event) {--%>
+<%--if (form.checkValidity() === false) {--%>
+<%--event.preventDefault();--%>
+<%--event.stopPropagation();--%>
+<%--}--%>
+<%--form.classList.add('was-validated');--%>
+<%--}, false);--%>
+<%--});--%>
+<%--}, false);--%>
+<%--})();--%>
 <%--</script>--%>
 </body>
 </html>

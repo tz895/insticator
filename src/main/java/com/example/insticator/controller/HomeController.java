@@ -22,7 +22,7 @@ public class HomeController {
     }
 
     @GetMapping("")
-    public ModelAndView home(Model model){
+    public ModelAndView home(){
         User user = new User();
 
         ModelAndView modelAndView = new ModelAndView("/home");
@@ -39,6 +39,6 @@ public class HomeController {
 
         userService.add(user);
 
-        return "redirect:/trivia/random/"+user.getuId();
+        return "redirect:/main/random/"+user.getuId();
     }
 }

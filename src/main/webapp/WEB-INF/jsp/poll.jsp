@@ -31,50 +31,50 @@
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>${trivia.content}</h2>
+        <h2>${poll.content}</h2>
         <%--<p class="lead"></p>--%>
     </div>
 
-    <form:form action = "${pageContext.request.contextPath}/main/next/trivia/${uId}/${tId}" method = "post" modelAttribute="answer">
+    <form:form action = "${pageContext.request.contextPath}/main/next/poll/${uId}/${pId}" method = "post" modelAttribute="answer">
 
         <h3></h3>
 
 
-        <c:if test="${trivia.answersA != null && trivia.answersA.length() != 0}">
-        <div class="form-check">
-            <%--<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>--%>
-            <input:radiobutton path="answer" id="exampleRadios1" value="1" checked="1" />
-            <label class="form-check-label" for="exampleRadios1">
-                    ${trivia.answersA}
-            </label>
-        </div>
+        <c:if test="${poll.answersA != null && poll.answersA.length() != 0}">
+            <div class="form-check">
+                    <%--<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>--%>
+                <input:radiobutton path="answer" id="exampleRadios1" value="1" checked="${poll.answersA}" />
+                <label class="form-check-label" for="exampleRadios1">
+                        ${poll.answersA}
+                </label>
+            </div>
         </c:if>
 
-        <c:if test="${trivia.answersB != null && trivia.answersB.length() != 0}">
-        <div class="form-check">
-            <input:radiobutton path="answer" id="exampleRadios2" value="2" />
-            <label class="form-check-label" for="exampleRadios2">
-                    ${trivia.answersB}
-            </label>
-        </div>
+        <c:if test="${poll.answersB != null && poll.answersB.length() != 0}">
+            <div class="form-check">
+                <input:radiobutton path="answer" id="exampleRadios2" value="${poll.answersB}" />
+                <label class="form-check-label" for="exampleRadios2">
+                        ${poll.answersB}
+                </label>
+            </div>
         </c:if>
 
-        <c:if test="${trivia.answersC != null && trivia.answersC.length() != 0}">
-        <div class="form-check">
-            <input:radiobutton path="answer" id="exampleRadios3" value="3"/>
-            <label class="form-check-label" for="exampleRadios3">
-                    ${trivia.answersC}
-            </label>
-        </div>
+        <c:if test="${poll.answersC != null && poll.answersC.length() != 0}">
+            <div class="form-check">
+                <input:radiobutton path="answer" id="exampleRadios3" value="${poll.answersC}"/>
+                <label class="form-check-label" for="exampleRadios3">
+                        ${poll.answersC}
+                </label>
+            </div>
         </c:if>
 
-        <c:if test="${trivia.answersD != null && trivia.answersD.length() != 0}">
-        <div class="form-check">
-            <input:radiobutton path="answer" id="exampleRadios4" value="4" />
-            <label class="form-check-label" for="exampleRadios4">
-                    ${trivia.answersD}
-            </label>
-        </div>
+        <c:if test="${poll.answersD != null && poll.answersD.length() != 0}">
+            <div class="form-check">
+                <input:radiobutton path="answer" id="exampleRadios4" value="${poll.answersD}" />
+                <label class="form-check-label" for="exampleRadios4">
+                        ${poll.answersD}
+                </label>
+            </div>
         </c:if>
 
 

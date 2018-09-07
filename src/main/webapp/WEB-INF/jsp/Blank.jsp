@@ -15,7 +15,7 @@
 <body>
 Created Successfully!
 <p>
-    <a href="<c:url value="${pageContext.request.contextPath}/index"/>" class="btn btn-light">Home</a>
+    <a href="<c:url value="${pageContext.request.contextPath}/admin"/>" class="btn btn-light">Home</a>
 </p>
 
 </body>
