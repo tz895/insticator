@@ -165,7 +165,7 @@ public class MainController {
         int i = index / rows.size();
         int j = index % rows.size();
 
-        String answer = rows.get(i) + " , " + cols.get(j);
+        String answer = rows.get(j) + " , " + cols.get(i);
 
         matricService.build(mid,uid,answer);
         return "redirect:/main/random/"+ uid;
