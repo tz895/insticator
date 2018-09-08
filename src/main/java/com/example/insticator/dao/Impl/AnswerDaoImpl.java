@@ -2,6 +2,7 @@ package com.example.insticator.dao.Impl;
 
 import com.example.insticator.dao.AnswerDao;
 import com.example.insticator.model.CAnswer;
+import com.example.insticator.model.MAnswer;
 import com.example.insticator.model.PAnswer;
 import com.example.insticator.model.TAnswer;
 import org.springframework.stereotype.Repository;
@@ -30,5 +31,10 @@ public class AnswerDaoImpl implements AnswerDao {
     @Override
     public void CheckboxBuild(CAnswer cAnswer) {
         entityManager.persist(cAnswer);
+    }
+
+    @Override
+    public void MatricBuild(MAnswer mAnswer) {
+        entityManager.persist(mAnswer);
     }
 }

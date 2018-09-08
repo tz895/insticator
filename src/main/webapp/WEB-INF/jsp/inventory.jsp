@@ -117,6 +117,32 @@
 
         </table>
 
+        <div class = "page-information">
+            <h5>Matric <a href="<spring:url value="/matric/create" />" class="btn btn-primary btn-sm">Add Matric</a></h5>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr class="table-success">
+                <th>Content</th>
+                <th></th>
+            </tr>
+            </thead>
+            <c:forEach items = "${matrics}" var="matric">
+                <tr>
+                    <td>${matric.content}</td>
+                    <td>
+
+                        <a href="<spring:url value = "/matric/delete/${matric.mId}"/>"><i class="fas fa-trash"></i></a>
+
+                        <a href="<spring:url value = "/matric/edit/${matric.mId}"/>"><i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+            </c:forEach>
+
+
+        </table>
+
 
 
     </div>

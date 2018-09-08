@@ -3,6 +3,7 @@ package com.example.insticator.controller;
 import com.example.insticator.model.*;
 import com.example.insticator.model.wrappedclass.CheckboxAnswer;
 import com.example.insticator.service.CheckboxService;
+import com.example.insticator.service.MatricService;
 import com.example.insticator.service.PollService;
 import com.example.insticator.service.TriviaService;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -19,11 +21,13 @@ public class MainController {
     private TriviaService triviaService;
     private PollService pollService;
     private CheckboxService checkboxService;
+    private MatricService matricService;
 
-    public MainController(TriviaService triviaService, PollService pollService, CheckboxService checkboxService) {
+    public MainController(TriviaService triviaService, PollService pollService, CheckboxService checkboxService, MatricService matricService) {
         this.triviaService = triviaService;
         this.pollService = pollService;
         this.checkboxService = checkboxService;
+        this.matricService = matricService;
     }
 
     @GetMapping("test/checkbox/{uid}")
@@ -37,9 +41,10 @@ public class MainController {
         Trivia trivia = triviaService.getRandom(uid);
         Poll poll = pollService.getRandom(uid);
         Checkbox checkbox = checkboxService.getRandom(uid);
+        Matric matric = matricService.getRandom(uid);
 
 
-        if(trivia == null && poll == null && checkbox == null) {
+        if(trivia == null && poll == null && checkbox == null && matric == null) {
             ModelAndView modelAndView = new ModelAndView("/finish");
             return modelAndView;
         }
@@ -49,7 +54,7 @@ public class MainController {
         Random ran = new Random();
 
         while(cur == null) {
-            int random = ran.nextInt(3);
+            int random = ran.nextInt(4);
             switch (random) {
                 case 0:
                     cur = trivia != null ? getRandomTrivia(trivia,uid) : null;
@@ -59,6 +64,9 @@ public class MainController {
                     break;
                 case 2:
                     cur = poll != null ? getRandomPoll(poll,uid) : null;
+                    break;
+                case 3:
+                    cur = matric != null ? getRandomMatric(matric,uid) : null;
                     break;
                 default:
                     cur = null;
@@ -94,7 +102,6 @@ public class MainController {
     }
 
     public ModelAndView getRandomCheckbox(Checkbox checkbox,int uid) {
-        Integer answer = null;
         ModelAndView modelAndView = new ModelAndView("/checkbox");
 
         CheckboxAnswer options = new CheckboxAnswer(checkbox.getValidAnswer());
@@ -105,6 +112,22 @@ public class MainController {
         modelAndView.addObject("answers",cAnswer);
         modelAndView.addObject("uId",uid);
         modelAndView.addObject("cId",checkbox.getcId());
+
+        return modelAndView;
+    }
+
+    public ModelAndView getRandomMatric(Matric matric,int uid) {
+        Integer answer = null;
+        ModelAndView modelAndView = new ModelAndView("/matric");
+
+        List<String> rows = matric.getRowOptions();
+        List<String> cols = matric.getColOptions();
+
+        modelAndView.addObject("matric",matric);
+        modelAndView.addObject("rows",rows);
+        modelAndView.addObject("cols",cols);
+        modelAndView.addObject("uId",uid);
+        modelAndView.addObject("cId",matric.getmId());
 
         return modelAndView;
     }

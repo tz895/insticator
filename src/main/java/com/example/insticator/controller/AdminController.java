@@ -1,10 +1,8 @@
 package com.example.insticator.controller;
 
-import com.example.insticator.model.Checkbox;
-import com.example.insticator.model.Poll;
-import com.example.insticator.model.Trivia;
-import com.example.insticator.model.User;
+import com.example.insticator.model.*;
 import com.example.insticator.service.CheckboxService;
+import com.example.insticator.service.MatricService;
 import com.example.insticator.service.PollService;
 import com.example.insticator.service.TriviaService;
 import org.springframework.stereotype.Controller;
@@ -21,11 +19,13 @@ public class AdminController {
     TriviaService triviaService;
     PollService pollService;
     CheckboxService checkboxService;
+    MatricService matricService;
 
-    public AdminController(TriviaService triviaService, PollService pollService, CheckboxService checkboxService) {
+    public AdminController(TriviaService triviaService, PollService pollService, CheckboxService checkboxService, MatricService matricService) {
         this.triviaService = triviaService;
         this.pollService = pollService;
         this.checkboxService = checkboxService;
+        this.matricService = matricService;
     }
 
     @GetMapping("")
@@ -33,11 +33,13 @@ public class AdminController {
         List<Trivia> triviaList = triviaService.getAllTrivia();
         List<Poll> pollList = pollService.getAllPoll();
         List<Checkbox> checkboxList = checkboxService.getAllCheckbox();
+        List<Matric> matricList = matricService.getAllMatric();
 
         ModelAndView modelAndView = new ModelAndView("/inventory");
         modelAndView.addObject("trivias",triviaList);
         modelAndView.addObject("polls",pollList);
         modelAndView.addObject("checkbox",checkboxList);
+        modelAndView.addObject("matrics",matricList);
 
         return modelAndView;
     }
