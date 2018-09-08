@@ -38,8 +38,11 @@
             <h1>Inventory Page</h1>
 
             <p class="lead">This is the inventory page!</p>
-        </div>
 
+            <a href="<c:url value="/index"/>"class="btn-success btn">Home</a>
+
+        </div>
+        <br>
         <div class = "page-information">
             <h5>Trivia <a href="<spring:url value="/trivia/create" />" class="btn btn-primary btn-sm">Add Trivia</a></h5>
         </div>
@@ -142,7 +145,6 @@
 
 
         </table>
-
 
 
     </div>

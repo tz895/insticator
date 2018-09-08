@@ -44,7 +44,9 @@
         <br>
 
         <input type="submit" value="Start" class="btn btn-lg btn-primary btn-block">
-        <%--<a href="<c:url value="/"/>" class="btn btn-light"> Cancel</a>--%>
+
+        <br>
+        <a href="<c:url value="/admin/"/>">Admin</a>
 
     </form:form>
 

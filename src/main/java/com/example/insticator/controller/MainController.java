@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Random;
@@ -148,6 +150,24 @@ public class MainController {
     public String getNextCheckbox(@PathVariable(value = "uId")int uid, @PathVariable(value = "cId")int cid, @Valid @ModelAttribute("answerArray") CheckboxAnswer cAnswer) {
         String s = String.join(" ",cAnswer.getAnswers());
         checkboxService.build(cid,uid,s);
+        return "redirect:/main/random/"+ uid;
+    }
+
+    @PostMapping("/next/matric/{uId}/{mId}")
+    public String getNextMatric(@PathVariable(value = "uId")int uid, @PathVariable(value = "mId")int mid, HttpServletRequest request) {
+//        String s = String.join(" ",cAnswer.getAnswers());
+        String s = request.getParameter("customRadio");
+        Integer index = Integer.valueOf(s);
+
+        Matric matric = matricService.getById(mid);
+        List<String> rows = matric.getRowOptions();
+        List<String> cols = matric.getColOptions();
+        int i = index / rows.size();
+        int j = index % rows.size();
+
+        String answer = rows.get(i) + " , " + cols.get(j);
+
+        matricService.build(mid,uid,answer);
         return "redirect:/main/random/"+ uid;
     }
 }

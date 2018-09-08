@@ -35,7 +35,9 @@
         <h2>${matric.content}</h2>
     </div>
 
-    <table class="table table-striped table-hover custom-radio">
+    <form action="${pageContext.request.contextPath}/main/next/matric/${uId}/${matric.mId}" method="post">
+
+    <table class="table table-striped table-hover">
         <thead>
         <tr class="table-success">
             <th>${matric.title}</th>
@@ -53,8 +55,8 @@
                 <td>${col}</td>
             <c:forEach items="${rows}" var="row" varStatus="rowstatus">
                 <td>
-                    <input type="radio" id="${colstatus.index * fn:length(options) + rowstatus.index}"  name="customRadio" class="custom-control-input" value="${colstatus.index * fn:length(options) + rowstatus.index}">
-                    <%--<label class="custom-control-label" for="${status.index * fn:length(options)  + status1.index}"></label>--%>
+                    <input type="radio" id="${colstatus.index * fn:length(rows) + rowstatus.index}"  name="customRadio" class="custom-control-input" value="${colstatus.index * fn:length(rows) + rowstatus.index}" required>
+                    <label class="custom-control-label" for="${colstatus.index * fn:length(rows)  + rowstatus.index}">Yes</label>
                 </td>
             </c:forEach>
             </tr>
@@ -62,7 +64,10 @@
 
     </table>
 
+    <input type="submit" value="submit" class="btn btn-primary">
+    <a href="<c:url value="${pageContext.request.contextPath}/index"/>" class="btn btn-light">Cancel</a>
 
+    </form>
 
     <%--<form:form action = "${pageContext.request.contextPath}/main/next/poll/${uId}/${pId}" method = "post" modelAttribute="answer">--%>
 
@@ -73,8 +78,7 @@
 
         <%--<br>--%>
 
-        <%--<input type="submit" value="submit" class="btn btn-primary">--%>
-        <%--<a href="<c:url value="${pageContext.request.contextPath}/index"/>" class="btn btn-light">Home</a>--%>
+
 
     <%--</form:form>--%>
 

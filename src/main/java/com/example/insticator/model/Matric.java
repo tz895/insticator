@@ -26,13 +26,13 @@ public class Matric implements Serializable {
 
     @ElementCollection
     @CollectionTable(name = "matricRowOption", joinColumns = @JoinColumn(name = "matric_id"))
-    @Column(name = "row_option")
+    @OrderColumn
     private List<String> rowOptions = new ArrayList<>();
 
 
     @ElementCollection
     @CollectionTable(name = "matricColOption", joinColumns = @JoinColumn(name = "matric_id"))
-    @Column(name = "col_option")
+    @OrderColumn
     private List<String> colOptions = new ArrayList<>();
 
     public Matric() {
