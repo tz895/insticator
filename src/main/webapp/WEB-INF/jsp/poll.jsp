@@ -42,7 +42,7 @@
 
         <c:if test="${poll.answersA != null && poll.answersA.length() != 0}">
             <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios1" value="${poll.answersA}" checked="${poll.answersA}" />
+                <input:radiobutton path="answer" id="exampleRadios1" value="${poll.answersA}" checked="${poll.answersA}" required=""/>
                 <label class="form-check-label" for="exampleRadios1">
                         ${poll.answersA}
                 </label>
@@ -51,7 +51,7 @@
 
         <c:if test="${poll.answersB != null && poll.answersB.length() != 0}">
             <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios2" value="${poll.answersB}" />
+                <input:radiobutton path="answer" id="exampleRadios2" value="${poll.answersB}" required=""/>
                 <label class="form-check-label" for="exampleRadios2">
                         ${poll.answersB}
                 </label>
@@ -60,7 +60,7 @@
 
         <c:if test="${poll.answersC != null && poll.answersC.length() != 0}">
             <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios3" value="${poll.answersC}"/>
+                <input:radiobutton path="answer" id="exampleRadios3" value="${poll.answersC}" required=""/>
                 <label class="form-check-label" for="exampleRadios3">
                         ${poll.answersC}
                 </label>
@@ -69,12 +69,13 @@
 
         <c:if test="${poll.answersD != null && poll.answersD.length() != 0}">
             <div class="form-check">
-                <input:radiobutton path="answer" id="exampleRadios4" value="${poll.answersD}" />
+                <input:radiobutton path="answer" id="exampleRadios4" value="${poll.answersD}" required=""/>
                 <label class="form-check-label" for="exampleRadios4">
                         ${poll.answersD}
                 </label>
             </div>
         </c:if>
+        <div class="invalid-feedback">More example invalid feedback text</div>
 
 
         <br>

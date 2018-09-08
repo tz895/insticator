@@ -36,24 +36,23 @@
         <%--<p class="lead"></p>--%>
     </div>
 
-    <form:form action = "${pageContext.request.contextPath}/main/next/checkbox/${uId}/${cId}" method = "post" modelAttribute="answerArray">
+    <form:form action = "${pageContext.request.contextPath}/main/next/checkbox/${uId}/${cId}" method = "post" modelAttribute="answers">
 
         <h3></h3>
 
-        <div class="form-check">
-            <form:checkboxes items = "${answerArray.answers}" path = "answers" />
-        </div>
+        <%--<div class="form-check">--%>
+            <%--<form:checkboxes items = "${answerArray.answers}" path = "answers"/>--%>
+        <%--</div>--%>
 
-
-        <%--<c:if test="${checkbox.option2 != null && checkbox.option2.length() != 0}">--%>
-            <%--<div class="form-check">--%>
-                <%--<from:checkbox path="${answerArray[1]}" id="checkbox2" value="${checkbox.option2}" />--%>
-                <%--<label class="form-check-label" for="checkbox2">--%>
-                        <%--${checkbox.option2}--%>
-                <%--</label>--%>
-            <%--</div>--%>
-        <%--</c:if>--%>
-
+        <table>
+            <tr>
+                <td>
+                    <ul>
+                        <form:checkboxes element="li" items = "${options.answers}" path = "answers"/>
+                    </ul>
+                </td>
+            </tr>
+        </table>
 
 
         <br>

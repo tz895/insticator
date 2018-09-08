@@ -97,10 +97,12 @@ public class MainController {
         Integer answer = null;
         ModelAndView modelAndView = new ModelAndView("/checkbox");
 
-        CheckboxAnswer cAnswer = new CheckboxAnswer(checkbox.getValidAnswer());
+        CheckboxAnswer options = new CheckboxAnswer(checkbox.getValidAnswer());
+        CheckboxAnswer cAnswer = new CheckboxAnswer();
 
         modelAndView.addObject("checkbox",checkbox);
-        modelAndView.addObject("answerArray",cAnswer);
+        modelAndView.addObject("options",options);
+        modelAndView.addObject("answers",cAnswer);
         modelAndView.addObject("uId",uid);
         modelAndView.addObject("cId",checkbox.getcId());
 
